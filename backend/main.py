@@ -989,7 +989,9 @@ async def chat_rag(request: Request):
             "2. LANGUAGE SUPPORT:\n"
             "   - If the user asks in Urdu or Roman Urdu (e.g. 'bhai info chahiye', 'ye kya hai'), reply naturally in helpful Roman Urdu or English.\n"
             "3. NO HALLUCINATION:\n"
-            "   - Only cite timestamps if they exist in the retrieved context. Never fabricate random timestamps."
+            "   - Only cite timestamps if they exist in the retrieved context. Never fabricate random timestamps.\n"
+            "4. CLEAN FORMATTING:\n"
+            "   - Format with clean Markdown paragraphs and standard bullet points. Do NOT output raw HTML tags like '<br>' or '<br/>'; use natural line breaks or standard bullet lists instead."
         )
         user_prompt = (
             f"RETRIEVED MULTIMODAL CONTEXT:\n{grounded_context}\n\n"
@@ -1011,6 +1013,8 @@ async def chat_rag(request: Request):
                 )
                 reply_content = completion.choices[0].message.content.strip()
                 if reply_content:
+                    # Clean any accidental literal <br> tags
+                    reply_content = re.sub(r'<br\s*/?>', '\n', reply_content)
                     break
             except Exception as e:
                 logger.warning(f"Groq LLM call with {candidate_model} error: {e}")

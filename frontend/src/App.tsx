@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import {
   Video,
   FileText,
@@ -900,6 +901,7 @@ export default function App() {
                           <div className="markdown-content text-xs leading-relaxed space-y-2">
                             <ReactMarkdown
                               remarkPlugins={[remarkGfm]}
+                              rehypePlugins={[rehypeRaw]}
                               components={{
                                 table: ({ children }) => (
                                   <div className="overflow-x-auto my-2.5 rounded-xl border border-slate-700/60 shadow-sm">

@@ -19,10 +19,16 @@ __pycache__/
 .cache/
 **/.cache/
 
-# Large Media Recordings
+# Videos (Excluded from git as requested)
 *.mp4
-!sample_videos/*.mp4
-!frontend/public/*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+sample_videos/
+
+# Nested duplicate folder
+Multimodal-RAG-video/
 
 # Node / Frontend
 node_modules/
