@@ -19,13 +19,14 @@ __pycache__/
 .cache/
 **/.cache/
 
-# Videos (Excluded from git as requested)
+# Media (Ignore root recordings and heavy runtime videos, keep lightweight sample testing video)
 *.mp4
 *.webm
 *.mov
 *.avi
 *.mkv
-sample_videos/
+!sample_videos/*.mp4
+!frontend/public/*.mp4
 
 # Nested duplicate folder
 Multimodal-RAG-video/
