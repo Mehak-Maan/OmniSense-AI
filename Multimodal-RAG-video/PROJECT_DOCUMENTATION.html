@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Complete Project Documentation: Multimodal RAG</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #2c3e50; }
+        h1 { border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        code { background-color: #f4f4f4; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        pre { background-color: #f4f4f4; padding: 15px; border-radius: 8px; overflow-x: auto; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 5px; }
+        .highlight { font-weight: bold; color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <h1>📚 Complete Project Documentation: Multimodal RAG</h1>
+    <p>Welcome to the detailed documentation for the <strong>Multimodal RAG</strong> project!</p>
+
+    <h2>🌟 1. What is this Project?</h2>
+    <p><strong>Multimodal RAG</strong> is an advanced, smart AI Chatbot.</p>
+    <ul>
+        <li><strong>Multimodal</strong> means it can understand different types of media: Text, Audio, and Images.</li>
+        <li><strong>RAG</strong> stands for <strong>Retrieval-Augmented Generation</strong>. It means if you give the AI a document (like a PDF), it will read the document, "retrieve" the exact information needed from it, and then "generate" a smart answer for you.</li>
+    </ul>
+    <p>With this project, you can:</p>
+    <ul>
+        <li>Type messages to chat with the AI.</li>
+        <li>Send voice notes (Audio) and hear the AI speak back to you.</li>
+        <li>Upload images and ask the AI what is inside the picture.</li>
+        <li>Upload PDFs and ask questions about the document.</li>
+    </ul>
+
+    <h2>🛠️ 2. What Technologies & Tools Were Used?</h2>
+    <p>We used a combination of powerful, open-source AI tools to build this:</p>
+    
+    <h3>🖥️ 1. Core Frameworks</h3>
+    <ul>
+        <li><strong>Python</strong>: The main programming language.</li>
+        <li><strong>Streamlit</strong>: Used to build the beautiful website (UI) where you chat with the AI.</li>
+        <li><strong>LangChain</strong>: A special tool used to connect the AI models together and manage the "chat memory".</li>
+    </ul>
+
+    <h3>🧠 2. AI Language Models (The Brain)</h3>
+    <ul>
+        <li><strong>Ollama</strong>: We use Ollama to run powerful AI chat models (like Llama 3) locally on the computer.</li>
+    </ul>
+
+    <h3>🖼️ 3. Computer Vision (For Images)</h3>
+    <ul>
+        <li><strong>BLIP (Salesforce/blip-vqa-base)</strong>: A special AI model that looks at an uploaded image and answers questions about it.</li>
+    </ul>
+
+    <h3>🎤 4. Audio Processing (Voice)</h3>
+    <ul>
+        <li><strong>Wav2Vec2 (HuggingFace)</strong>: Used for <strong>Speech-to-Text</strong>. It listens to the audio you upload and converts it into written text.</li>
+        <li><strong>gTTS (Google Text-to-Speech)</strong>: Used for <strong>Text-to-Speech</strong>. It takes the AI's written answer and turns it into an audio file.</li>
+    </ul>
+
+    <h3>📚 5. The RAG System (For PDFs)</h3>
+    <ul>
+        <li><strong>Pinecone</strong>: A "Vector Database". When we upload a PDF, we store its paragraphs here so the AI can search through it extremely fast.</li>
+    </ul>
+
+    <h2>🔄 3. How Does the Pipeline Work? (Step-by-Step)</h2>
+    
+    <h3>🟢 Scenario A: Normal Text Chat</h3>
+    <ol>
+        <li>You type a message (e.g., "Hello!").</li>
+        <li>The message goes directly to <strong>Ollama</strong> (the AI brain).</li>
+        <li>The AI generates an answer.</li>
+        <li><strong>gTTS</strong> converts the answer into audio.</li>
+        <li>The website shows you the text and plays the audio for you!</li>
+    </ol>
+
+    <h3>🔵 Scenario B: When You Upload a PDF (RAG Pipeline)</h3>
+    <ol>
+        <li><strong>Reading</strong>: You upload a PDF. <code>pdf_handler.py</code> reads the PDF and chops it into small, readable paragraphs.</li>
+        <li><strong>Storing</strong>: These paragraphs are turned into numbers (Embeddings) and saved in the <strong>Pinecone Vector Database</strong> (<code>vectorstore.py</code>).</li>
+        <li><strong>Asking</strong>: You ask a question (e.g., "What does page 2 say?").</li>
+        <li><strong>Searching</strong>: The system searches Pinecone to find the most relevant paragraphs from your PDF.</li>
+        <li><strong>Answering</strong>: It gives those paragraphs to <strong>Ollama</strong>, and Ollama reads them to give you a perfect answer!</li>
+    </ol>
+
+    <h3>🟡 Scenario C: When You Upload an Image</h3>
+    <ol>
+        <li>You upload a picture and type a question (e.g., "What color is the car?").</li>
+        <li>The image and your question are sent to the <strong>BLIP Model</strong> (<code>vqa.py</code>).</li>
+        <li>BLIP looks at the image, reads your question, and outputs the answer.</li>
+    </ol>
+
+    <h3>🟣 Scenario D: When You Upload Audio</h3>
+    <ol>
+        <li>You upload an audio voice note.</li>
+        <li><strong>Wav2Vec2</strong> (<code>audio_processor.py</code>) listens to it and turns your voice into text.</li>
+        <li>That text is sent to the AI just like a normal text message.</li>
+        <li>The AI replies, and the app reads it out loud for you!</li>
+    </ol>
+
+    <h2>📂 4. Project Folder Structure Explained</h2>
+    <ul>
+        <li><code>app.py</code>: The main file. It controls the website UI and buttons.</li>
+        <li><code>src/audio_processor.py</code>: Handles turning Voice to Text, and Text to Voice.</li>
+        <li><code>src/vqa.py</code>: Handles the Image AI (BLIP) to answer questions about pictures.</li>
+        <li><code>src/pdf_handler.py</code>: Reads PDFs and breaks them into small pieces.</li>
+        <li><code>src/vectorstore.py</code>: Connects to Pinecone Database to save and search the PDF pieces.</li>
+        <li><code>src/ollama_chain.py</code>: Connects to the Ollama AI to handle the actual chatting and memory.</li>
+        <li><code>.env</code>: A hidden file where you keep your secret passwords (like the Pinecone API Key).</li>
+    </ul>
+
+    <h2>⚙️ 5. Easy Setup Guide</h2>
+    <p>If you want to run this project yourself on your computer, follow these simple steps:</p>
+    <pre><code># 1. Clone the project
+git clone https://github.com/Ahmed-AI-01/Multimodal-RAG.git
+cd Multimodal-RAG
+
+# 2. Create a Virtual Environment
+python -m venv venv
+
+# 3. Activate It
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
+# 4. Install Everything
+pip install -r requirements.txt
+
+# 5. Set your API Key
+# Create a .env file and add: PINECONE_API_KEY=your_key_here
+
+# 6. Start the App
+streamlit run app.py
+    </code></pre>
+    <p>Enjoy using your smart AI assistant! 🎉</p>
+</body>
+</html>

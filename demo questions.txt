@@ -1,0 +1,25 @@
+video
+What does this video say about OpenCV keyframing?"
+"How is audio transcribed according to the video?"
+"At what timestamp is Groq Whisper discussed?"
+"Summarize the whole video and its main stages."
+
+audio
+Who is speaking in the audio and what is the meeting about?"
+"What are the statistics mentioned about query latency?"
+"How fast does Whisper transcribe one hour of audio according to the speaker?"
+"What percentage of cloud expenses decreased?"
+"What encryption standard is used for data privacy?"
+
+image
+"What does this image show and what are its main sections?"
+"What are the 4 key performance metrics displayed at the top?"
+"What is the cluster uptime and throughput according to the image?"
+"Explain the 4 stages shown in the pipeline data flow diagram."
+"What is the memory footprint and active storage node?"
+
+pdf
+"What was the annual revenue and ROI mentioned on Page 1?"
+"How many PDF pages per minute does the system parse according to Page 2?"
+"What compliance certifications and encryption standards are stated on Page 3?"
+"Compare the performance figures on Page 2 with the financial savings on Page 1."

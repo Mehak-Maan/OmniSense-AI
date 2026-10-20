@@ -1,0 +1,41 @@
+# Virtual Environments
+venv/
+**/venv/
+.venv/
+**/env/
+
+# Environment Variables & Secrets (NEVER COMMIT SECRETS)
+.env
+**/.env
+.env.*
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Byte-compiled / optimized / cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.cache/
+**/.cache/
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+*.log
+
+# Uploads & Temporary Media (runtime generated)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/uploads/keyframes/*
+!backend/uploads/keyframes/.gitkeep
+
+# IDE & OS Files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
