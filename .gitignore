@@ -19,6 +19,11 @@ __pycache__/
 .cache/
 **/.cache/
 
+# Large Media Recordings
+*.mp4
+!sample_videos/*.mp4
+!frontend/public/*.mp4
+
 # Node / Frontend
 node_modules/
 **/node_modules/
